@@ -1,0 +1,112 @@
+//html code
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="calculator">
+		<input class="calculator-screen" type="text" disabled>
+		<div class="calculator-keys">
+			<button class="key clear" onclick="clearScreen()">AC</button>
+			<button class="key operator" onclick="addOperator('/')">/</button>
+			<button class="key operator" onclick="addOperator('*')">*</button>
+			<button class="key" onclick="addNumber(7)">7</button>
+			<button class="key" onclick="addNumber(8)">8</button>
+			<button class="key" onclick="addNumber(9)">9</button>
+			<button class="key operator" onclick="addOperator('-')">-</button>
+			<button class="key" onclick="addNumber(4)">4</button>
+			<button class="key" onclick="addNumber(5)">5</button>
+			<button class="key" onclick="addNumber(6)">6</button>
+			<button class="key operator" onclick="addOperator('+')">+</button>
+			<button class="key" onclick="addNumber(1)">1</button>
+			<button class="key" onclick="addNumber(2)">2</button>
+			<button class="key" onclick="addNumber(3)">3</button>
+			<button class="key equal" onclick="calculate()">=</button>
+			<button class="key" onclick="addNumber(0)">0</button>
+			<button class="key" onclick="addNumber('.')">.</button>
+		</div>
+	</div>
+	<script src="app.js"></script>
+</body>
+</html>
+
+
+//css code
+
+.calculator {
+	max-width: 300px;
+	margin: 0 auto;
+	padding: 10px;
+	background: #f2f2f2;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px #ccc;
+}
+
+.calculator-screen {
+	display: block;
+	margin-bottom: 10px;
+	width: 100%;
+	padding: 10px;
+	border: none;
+	background: #fff;
+	font-size: 24px;
+	text-align: right;
+}
+
+.calculator-keys {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.key {
+	flex: 1;
+	margin: 5px;
+	font-size: 18px;
+	padding: 10px;
+	border: none;
+	background: #e6e6e6;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.operator {
+	background: #f2a31b;
+	color: #fff;
+}
+
+.equal {
+	background: #2ecc71;
+	color: #fff;
+}
+
+
+//javascript
+
+let calculation = '';
+
+function addNumber(number) {
+	calculation += number;
+	updateScreen(calculation);
+}
+
+function addOperator(operator) {
+	calculation += operator;
+	updateScreen(calculation);
+}
+
+function calculate() {
+	let result = eval(calculation);
+	updateScreen(result);
+}
+
+function clearScreen() {
+	calculation = '';
+	updateScreen(calculation);
+}
+
+function updateScreen(display) {
+	document.querySelector('.calculator-screen').value = display;
+}
